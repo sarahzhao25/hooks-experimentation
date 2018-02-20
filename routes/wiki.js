@@ -33,10 +33,12 @@ WikiRouter.get('/:page', (req, res, next) => {
                 }
             })
         })
-        .then((user) => res.render('wikipage', {
-            page: thePage,
-            user: user
-        }))
+        .then((user) => {
+            res.render('wikipage', {
+                page: thePage,
+                user: user
+            })
+        })
         .catch(next);
 })
 
@@ -54,13 +56,16 @@ WikiRouter.post('/', (req, res, next) => {
             return Page.create({
                 title: req.body.title,
                 content: req.body.content,
-                status: req.body.status
+                status: req.body.status,
+                tags: req.body.tags
             })
         })
         .then((thePage) => {
-            return thePage.setAuthor(user);
-        })
-        .then((newPage) => res.redirect(newPage.route))
+            console.log('this is the page', thePage);
+            res.json(thePage);})
+        //     return thePage.setAuthor(user);
+        // })
+        // .then((newPage) => res.json(newPage))
         .catch(next);
 })
 

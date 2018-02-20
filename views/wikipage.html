@@ -1,0 +1,19 @@
+{% extends "layout.html" %} {% block content %}
+<h3>{{page.title}} <small> (<a href="{{page.urlTitle}}/similar">Similar</a>)</small></h3>
+<ul>
+    {% for tag in page.tags %}
+    <li>
+        {{ tag }}
+    </li>
+    {% endfor %}
+</ul>
+<h4>by <a href="/users/{{user.id}}">{{user.name}}</a></h4>
+<div>PLACEHOLDER TAG LIST</div>
+<hr/>
+<div>
+    <a href="/users/{{user.id}}">{{user.name}}</a>
+</div>
+<div class="page-body">{{page.content}}</div>
+<hr/>
+<a href="{{page.urlTitle}}/edit" class="btn btn-primary">edit this page</a>
+<a href="{{page.urlTitle}}/delete" class="btn btn-danger">delete this page</a> {% endblock %}
